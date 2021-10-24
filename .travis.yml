@@ -1,6 +1,11 @@
+language: generic
+
 sudo: required
 services:
   -docker
 
 before_install:
   - docker build -t guigui741/docker-react -f Dockerfile.dev .
+  
+script:
+  - docker run -e CI=true guigui741/docker-react npm run test -- --coverage
